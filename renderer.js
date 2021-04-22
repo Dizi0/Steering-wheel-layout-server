@@ -7,13 +7,12 @@
 // Dans le processus de rendu (page web).
 //
 
-
 const http = require("http")
 const myParser = require("body-parser");
 const express = require("express");
 const app = express();
 
-let port = ":443"
+let port = 8080
 let fulladdr = ""
 let connectionEstablished = false
 let devicename = '';
@@ -26,7 +25,7 @@ for (const dev in ifaces) {
 }
 // console.log(address)
 shortaddress = address.replace("192.168.", "");
-fulladdr = "http://"+ "192.168." + shortaddress + port
+fulladdr = "http://"+ "192.168." + shortaddress + ":"+ port
 document.getElementById('localip').innerText += " " +  shortaddress
 
 
@@ -66,4 +65,4 @@ app.get("/", function(request, response) {
     response.send("Message received.");
 });
 
-app.listen(443);
+app.listen(port);
