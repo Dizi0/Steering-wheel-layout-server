@@ -1,0 +1,44 @@
+body{
+    background: #005f5f;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: system-ui, sans-serif;
+}
+.rotate{
+    transform: scaleX(-1);
+}
+#device{
+    opacity: 0;
+}
+meter::-webkit-meter-optimum-value {
+    box-shadow: 0 5px 5px -5px #999 inset;
+    background-image: linear-gradient(
+            90deg,
+            #719fd1 5%,
+            #719fd1 100%
+    );
+    background-size: 100% 100%;
+}
+#steering{
+    width: 200px;
+    transform: rotate(0deg);
+}
+.box {
+    width: 250px;
+    display: flex;
+    margin: auto;
+}
+
+.one {
+    flex: 1 1 auto;
+}
+
+.two {
+    flex: 1 1 auto;
+}
+
+.three {
+    flex: 1 1 auto;
+}
+
