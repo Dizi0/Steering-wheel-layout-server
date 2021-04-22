@@ -1,12 +1,12 @@
 {
-  "name": "steering-wheel-server",
+  "name": "steering-wheel-server-server",
   "version": "1.0.2",
   "description": "A layout designed for two-pc stream",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/Dizi0/Tekken-7-Save-Manager",
+  "repository": "https://github.com/Dizi0/Steering-wheel-layout-server",
   "keywords": [
     "Tekken 7",
     "Save Manager"
