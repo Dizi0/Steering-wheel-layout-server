@@ -1,6 +1,6 @@
 {
   "name": "steering-wheel-server-server",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "A layout designed for two-pc stream",
   "main": "main.js",
   "scripts": {

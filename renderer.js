@@ -7,37 +7,31 @@
 // Dans le processus de rendu (page web).
 //
 
-const prompt = require('electron-prompt');
+
 const http = require("http")
 const myParser = require("body-parser");
 const express = require("express");
 const app = express();
 
+let port = ":443"
+let fulladdr = ""
 let connectionEstablished = false
 let devicename = '';
 let ip = '';
-prompt({
-    title: 'Insert the client ID',
-    label: "Client ID (It's on the other window's name)",
-    icon : 'assets/imgs/nohitcombologo.jpg',
-    value: '0.0',
-    height : 200,
-    inputAttrs: {
-        type: 'text'
-    },
-    type: 'input'
-})
-    .then((r) => {
-        if(r === null) {
-            console.log('user cancelled');
-        } else {
-            ip = "http://192.168." + r + ":8080"
-            console.log(ip)
-        }
-    })
-    .catch(console.error);
+
+let address,
+    ifaces = require('os').networkInterfaces();
+for (const dev in ifaces) {
+    ifaces[dev].filter((details) => details.family === 'IPv4' && details.internal === false ? address = details.address: undefined);
+}
+// console.log(address)
+shortaddress = address.replace("192.168.", "");
+fulladdr = "http://"+ "192.168." + shortaddress + port
+document.getElementById('localip').innerText += " " +  shortaddress
+
 
 console.log("Listening ...")
+
 function invert(number){
     if (number < 0){
         return Math.abs(number)
@@ -46,6 +40,7 @@ function invert(number){
         return -Math.abs(number)
     }
 }
+
 app.use(myParser.urlencoded({extended : true}));
 app.get("/", function(request, response) {
     if(connectionEstablished === false){
@@ -67,9 +62,8 @@ app.get("/", function(request, response) {
     }
     if(request.query.Wheel !== undefined) {
         document.getElementById("steering").style.transform = "rotate("+request.query.Wheel * 360+"deg)";
-        // console.log("rotate("+request.query.Wheel * 360+")")
     }
     response.send("Message received.");
 });
 
-app.listen(8080);
+app.listen(443);
